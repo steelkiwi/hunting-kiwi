@@ -32,6 +32,7 @@ momentjs:moment
 iron:router
 zimme:active-route
 useraccounts:core
+useraccounts:iron-routing
 meteorhacks:sikka
 meteorhacks:kadira
 sacha:spin
