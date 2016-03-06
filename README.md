@@ -6,4 +6,5 @@
 
 
 # License
-Note that this project is distributed under the [MIT License](LICENSE).
+
+Note that this project is distributed under the [![MIT License](http://i.imgur.com/T4ShFG2.png)](LICENSE).
