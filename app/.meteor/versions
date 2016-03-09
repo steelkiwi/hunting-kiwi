@@ -51,6 +51,9 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+jagi:astronomy@1.2.10
+jagi:astronomy-validators@1.1.2
+jagi:reactive-map@2.0.0
 jquery@1.11.4
 juliancwirko:s-alert@3.1.4
 juliancwirko:s-alert-bouncyflip@3.1.3
