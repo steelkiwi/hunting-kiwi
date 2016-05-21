@@ -1,35 +1,67 @@
-model = Astro.Class({
-  name: 'Candidate',
-  collection: Candidates,
-  fields: {
-    firstName: {
-      type: 'string',
-      validator: [
-        Validators.minLength(1),
-        Validators.maxLength(512)
-      ]
-    },
-    secondName: {
-      type: 'string',
-      validator: [
-        Validators.minLength(1),
-        Validators.maxLength(512)
-      ]
-    },
-    fatherName: {
-      type: 'string',
-      validator: [
-        Validators.minLength(1),
-        Validators.maxLength(512)
-      ]
-    },
-    birthDate: {
-      type: 'date'
-    },
-    createdAt: {
-      type: 'date'
-    }
+import { Class } from 'meteor/jagi:astronomy';
+import { Mongo } from 'meteor/mongo';
+
+const collection = new Mongo.Collection('candidates');
+
+collection.allow({
+  insert: function() {
+    return true;
+  },
+  update: function () {
+    return true;
+  },
+  remove: function() {
+    return true;
   }
 });
 
-Namespace('App.Models').Candidate = model;
+const model = Class.create({
+  name: 'Candidate',
+  collection: collection,
+  fields: {
+    firstName: {
+      type: String,
+      validator: [{
+        type: 'minLength',
+        param: 1
+      }, {
+        type: 'maxLength',
+        param: 512
+      }]
+    },
+    secondName: {
+      type: String,
+      validator: [{
+        type: 'minLength',
+        param: 1
+      }, {
+        type: 'maxLength',
+        param: 512
+      }]
+    },
+    fatherName: {
+      type: String,
+      validator: [{
+        type: 'minLength',
+        param: 1
+      }, {
+        type: 'maxLength',
+        param: 512
+      }]
+    },
+    birthDate: {
+      type: Date
+    },
+    createdAt: {
+      type: Date
+    }
+  },
+  behaviors: {
+    timestamp: {}
+  }
+});
+
+export {
+    collection as Candidates,
+    model as Candidate
+};
