@@ -1,0 +1,8 @@
+{
+  "googleAuth": {
+    "service": "google",
+    "clientId": "816428465673-m6fgpkh2ai553hr8o9q7nj5i5uo4va67.apps.googleusercontent.com",
+    "secret": "lSmfNQhl3OY6hpfFfShf2NUb",
+    "allowedDomain": "steelkiwi.com"
+  }
+}
