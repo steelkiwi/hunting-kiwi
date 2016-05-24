@@ -6,12 +6,12 @@ const collection = new Mongo.Collection('candidates');
 collection.allow({
   insert: () =>  true,
   update: () =>  true,
-  remove: () =>  true,
+  remove: () =>  true
 });
 
 const model = Class.create({
   name: 'Candidate',
-  collection: collection,
+  collection,
   fields: {
     firstName: {
       type: String,
@@ -23,7 +23,7 @@ const model = Class.create({
         param: 512
       }]
     },
-    secondName: {
+    lastName: {
       type: String,
       validator: [{
         type: 'minLength',
@@ -41,13 +41,20 @@ const model = Class.create({
       }, {
         type: 'maxLength',
         param: 512
-      }]
+      }],
+      optional: true
     },
     birthDate: {
       type: Date
-    },
-    createdAt: {
-      type: Date
+    }
+  },
+  methods: {
+    fullName() {
+      let name = `${this.firstName} ${this.lastName}`;
+      if (this.fatherName) {
+        name += ` ${this.fatherName}`;
+      }
+      return name;
     }
   },
   behaviors: {
