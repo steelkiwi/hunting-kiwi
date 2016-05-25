@@ -63,6 +63,6 @@ const model = Class.create({
 });
 
 export {
-    collection as Candidates,
-    model as Candidate
+  collection as Candidates,
+  model as Candidate
 };

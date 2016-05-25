@@ -89,9 +89,9 @@ const poll = Class.create({
 });
 
 export {
-    polls as Polls,
-    status as PollStatus,
-    type as PollType,
-    question as PollQuestion,
-    poll as Poll
+  polls as Polls,
+  status as PollStatus,
+  type as PollType,
+  question as PollQuestion,
+  poll as Poll
 };
