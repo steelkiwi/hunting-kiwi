@@ -1,16 +1,16 @@
 import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Mongo } from 'meteor/mongo';
 
-const collection = new Mongo.Collection('polls');
+const polls = new Mongo.Collection('polls');
 
-collection.allow({
+polls.allow({
   insert: () =>  true,
   update: () =>  true,
   remove: () =>  true
 });
 
-const Status = Enum.create({
-  name: 'Status',
+const status = Enum.create({
+  name: 'PollStatus',
   identifiers: {
     CREATED: 'CREATED',
     PUBLISHED: 'PUBLISHED',
@@ -19,21 +19,38 @@ const Status = Enum.create({
   }
 });
 
-const Type = Enum.create({
-  name: 'Type',
+const type = Enum.create({
+  name: 'PollType',
   identifiers: {
     PUBLIC: 'PUBLIC',
     PRIVATE: 'PRIVATE'
   }
 });
 
-const model = Class.create({
+const question = Class.create({
+  name: 'PollQuestion',
+  fields: {
+    title: {
+      type: String,
+      validator: [{
+        type: 'minLength',
+        param: 3
+      }, {
+        type: 'maxLength',
+        param: 256
+      }],
+      answers: [Mongo.ObjectID]
+    },
+  }
+});
+
+const poll = Class.create({
   name: 'Poll',
-  collection,
+  collection: polls,
   behaviors: {
     timestamp: {}
   },
-  field: {
+  fields: {
     title: {
       type: String,
       validator: [{
@@ -45,26 +62,36 @@ const model = Class.create({
       }]
     },
     status: {
-      type: Status
+      type: status
     },
     type: {
-      type: Type
+      type: type
     },
     createdBy: {
       type: Mongo.ObjectID,
       optional: true,
       immutable: true
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    questions: {
+      type: [question]
     }
   },
   events: {
     beforeSave(e) {
       const doc = e.currentTarget;
-      doc.status = Status.getIdentifier('CREATED');
+      doc.status = status.getIdentifier('CREATED');
     }
   }
 });
 
 export {
-    collection as Polls,
-    model as Poll
+    polls as Polls,
+    status as PollStatus,
+    type as PollType,
+    question as PollQuestion,
+    poll as Poll
 };
