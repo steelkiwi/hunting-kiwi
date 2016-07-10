@@ -1,8 +1,8 @@
 {
-  "toggle_navigation": "Toggle navigation",
-  "polls": "Polls",
-  "profile": "Profile",
-  "sign_in": "Sign in",
-  "log_out": "Log out",
-  "$msg_pageNotFound": "Page not found!"
+  "Toggle navigation": "Toggle navigation",
+  "Polls": "Polls",
+  "Profile": "Profile",
+  "Sign in": "Sign in",
+  "Log out": "Log out",
+  "Page not found!": "Page not found!"
 }
